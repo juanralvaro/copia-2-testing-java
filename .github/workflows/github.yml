@@ -22,10 +22,10 @@ jobs:
     services:
       selenium:
         image: selenium/standalone-chrome
+        options: --shm-size=512m
         ports:
         - 4444:4444
-      options: --shm-size=2g
-
+      
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 23
