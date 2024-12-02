@@ -4,6 +4,7 @@ import com.certidevs.model.Manufacturer;
 import com.certidevs.model.Product;
 import com.certidevs.repository.ManufacturerRepository;
 import com.certidevs.repository.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,12 @@ class ProductControllerIntegrationTest {
     @Autowired
     private ManufacturerRepository manufacturerRepository;
 
+    @BeforeEach
+    void setUp() {
+        productRepository.deleteAll();
+        manufacturerRepository.deleteAll();
+    }
+
     @Test
     void findAll() throws Exception {
 
@@ -64,7 +71,7 @@ class ProductControllerIntegrationTest {
         mockMvc.perform(get("/productos/" + product.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("product-detail"))
-                .andExpect(model().attributeExists("producto"));
+                .andExpect(model().attributeExists("product"));
     }
 
     @Test
