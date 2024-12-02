@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="nav1" class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a id="homeLink" class="navbar-brand" href="/productos">
+            <img src="https://placehold.co/200x200" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            App
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Alternar navegación">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarApp">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Enlaces de navegación -->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/productos}">
+                        <i class="fas fa-box"></i>
+                        Productos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="manufacturersLink" class="nav-link" th:href="@{/manufacturers}">
+                        <i class="fas fa-industry"></i>
+                        Fabricantes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disable" aria-disabled="true">
+                        <i class="fas fa-cart-shopping"></i>
+                        Compras
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disable" th:href="@{/libros}">
+                        <i class="fas fa-book"></i>
+                        Libros
+                    </a>
+                </li>
+            </ul>
+            <!-- Formulario de búsqueda -->
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-light">
+                    <i class="fas fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

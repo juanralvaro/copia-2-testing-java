@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+</head>
+<body>
+
+<div th:replace="~{navbar :: nav1}"></div>
+
+<div class="container mt-4">
+    <h1>Listado fabricantes/Marcas</h1>
+
+    <div class="mb-3">
+        <a id="createButton" href="/manufacturers/new" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Crear nuevo fabricante</a>
+    </div>
+
+
+    <div id="manufacturersTable" th:if="${manufacturers.size() > 0}" class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="manufacturer: ${manufacturers}">
+            <div class="card h-100">
+                <img th:id="'manufacturerImageUrl_' + ${manufacturer.id}" th:src="${manufacturer.imageUrl}" class="card-img-top" alt="Logo">
+                <div class="card-body">
+                    <h5 th:id="'manufacturerName_' + ${manufacturer.id}" class="card-title" th:text="${manufacturer.name}"></h5>
+                    <p th:id="'manufacturerDescription_' + ${manufacturer.id}" class="card-text" th:text="${manufacturer.description}"></p>
+                </div>
+                <div class="card-footer">
+                    <small th:id="'manufacturerYear_' + ${manufacturer.id}" class="text-muted">Año de fundación: <span th:text="${manufacturer.year}"></span></small>
+                </div>
+                <div class="card-footer">
+                    <a th:id="'manufacturerActionView_' + ${manufacturer.id}" th:href="@{/manufacturers/{id}(id=${manufacturer.id})}" class="btn btn-info btn-sm">
+                        <i class="fas fa-eye"></i>
+                        Ver</a>
+                    <a th:id="'manufacturerActionEdit_' + ${manufacturer.id}" th:href="@{/manufacturers/update/{id}(id=${manufacturer.id})}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i>
+                        Editar</a>
+                    <a th:id="'manufacturerActionDelete_' + ${manufacturer.id}" th:href="@{/manufacturers/delete/{id}(id=${manufacturer.id})}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                        Borrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p id="manufacturersEmpty" th:if="${manufacturers.size() == 0}">
+        No hay fabricantes.
+    </p>
+</div>
+
+<div th:replace="~{footer :: footer1}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/webjars/font-awesome/js/all.min.js}"></script>
+</body>
+</html>

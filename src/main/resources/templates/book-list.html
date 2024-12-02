@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+</head>
+<body>
+<div th:replace="~{navbar :: nav1}"></div>
+
+<div class="container mt-4">
+    <h1>Listado de libros</h1>
+
+    <div class="mt-3 mb-3">
+        <a id="btnCreate" href="/libros/crear" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Crear nuevo
+        </a>
+    </div>
+
+    <table class="table table-striped" id="tableList" th:if="${books.size() > 0}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>TÍTULO</th>
+            <th>PRECIO (€)</th>
+            <th>CATEGORÍAS</th>
+            <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book: ${books}">
+            <td th:id="'id_' + ${book.id}" th:text="${book.id}"></td>
+            <td th:id="'title_' + ${book.id}" th:text="${book.title}"></td>
+            <td th:id="'price_' + ${book.id}" th:text="${#numbers.formatDecimal(book.price, 1, 1)} + ' €'"></td>
+            <td>
+                <p th:if="${book.categories != null && book.categories.size() > 0}">
+                    <span class="badge mx-1" th:each="category: ${book.categories}" th:text="${category.name}"></span>
+                </p>
+            </td>
+            <td >
+                <a th:id="'actionView_' + ${book.id}" th:href="@{/libros/{id}(id=${book.id})}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
+                <a th:id="'actionEdit_' + ${book.id}" th:href="@{/libros/editar/{id}(id=${book.id})}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                <a th:id="'actionDelete_' + ${book.id}" th:href="@{/libros/borrar/{id}(id=${book.id})}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Borrar</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+    <p id="listEmpty" th:if="${books.size() == 0}">
+        No hay libros.
+    </p>
+</div>
+
+<div th:replace="~{footer :: footer1}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

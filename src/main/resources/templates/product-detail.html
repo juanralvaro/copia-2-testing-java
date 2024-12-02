@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de producto</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+</head>
+<body>
+
+<div th:replace="~{navbar :: nav1}"></div>
+
+<div class="container">
+    <h1 th:if="${product}">Detalle producto <span th:text="${product.id}"></span></h1>
+    <h1 th:unless="${product}">Producto no encontrado</h1>
+
+<div th:if="${product}">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+                <h5 id="productTitle" class="card-title" th:text="${product.name}"></h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">
+                    ID: <span id="product-id" th:text="${product.id}"></span>
+                </h6>
+                <p class="card-text">
+                    <strong>Precio:</strong>
+                    <span id="product-price" th:text="${product.price}"></span>€
+                    <br>
+                    <strong>Cantidad:</strong>
+                    <span id="product-quantity" th:text="${product.quantity}"></span>
+                    <br>
+                    <strong>Activo:</strong>
+                    <span th:if="${product.active}" id="product-active" style="color:green;">Disponible</span>
+                    <span th:unless="${product.active}" id="product-not-active" style="color:red;">No disponible</span>
+                    <br>
+                    <span th:if="${product.manufacturer}">
+                        <a id="manufacturerLink" th:href="@{/manufacturers/{id}(id=${product.manufacturer.id})}" th:text="${product.manufacturer.name}"></a>
+                    </span>
+                    <span id="manufacturerEmpty" th:unless="${product.manufacturer}" class="text-danger">Sin fabricante</span>
+                </p>
+                <a id="editButton" th:href="@{/productos/editar/{id}(id=${product.id})}" class='btn btn-primary'><i class="fas fa-edit"></i>Editar</a>
+                <a id="deleteButton" th:href="@{/productos/borrar/{id}(id=${product.id})}" class='btn btn-danger'><i class="fas fa-trash"></i>Borrar</a>
+            </div>
+        </div>
+    </div>
+    <div th:unless="${product}">
+        <p id="productEmpty">No existe el producto</p>
+    </div>
+
+    <div class="mt-3">
+        <a id="backButton" th:href="@{/productos}" class='btn btn-secondary'><i class="fas fa-trash"></i>Volver a la lista</a>
+    </div>
+</div>
+
+<div th:replace="~{footer :: footer1}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/webjars/font-awesome/js/all.min.js}"></script>
+</body>
+</html>

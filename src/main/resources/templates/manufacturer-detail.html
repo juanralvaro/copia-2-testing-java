@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de fabricante</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="shortcut icon" href="#" />
+</head>
+<body>
+
+<div th:replace="~{navbar :: nav1}"></div>
+
+<div class="container">
+    <h1>Detalle de fabricante</h1>
+
+    <div th:if="${manufacturer}">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4" >
+                    <img th:src="${manufacturer.imageUrl}" style="max-width: 60px;" class="img-fluid rounded-start" alt="Logo">
+                </div>
+                <div class="col-md-4 mt-3">
+                    <h5 class="card-title" th:text="${manufacturer.name}"></h5>
+                    <p class="card-text" th:text="${manufacturer.description}"></p>
+                    <p class="card-text"><small class text-muted>
+                        Año de fundación: <span th:text="${manufacturer.year}"></span></small></p>
+                    <div>
+                        <a th:href="@{/manufacturers/update/{id}(id=${manufacturer.id})}" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Editar</a>
+                        <a th:href="@{/manufacturers/delete/{id}(id=${manufacturer.id})}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Borrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <div th:unless="${manufacturer}" class="container">
+        <h1>No existe el fabricante</h1>
+    </div>
+    <a th:href="@{/manufacturers}" class="btn btn-secondary">Volver al listado</a>
+</div>
+
+<h3>Acciones sobre el fabricante</h3>
+<a th:href="@{/manufacturers}">Volver al listado</a>
+<a th:if="${manufacturer}" th:href="@{/manufacturers/update/{id}(id=${manufacturer.id})}">Editar</a>
+<a th:if="${manufacturer}" th:href="@{/manufacturers/delete/{id}(id=${manufacturer.id})}">Borrar</a>
+
+<div th:replace="~{footer :: footer1}"></div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></div>
+<script th:src="@{/webjars/font-awesome/js/all.min.js}"></script>
+
+</body>
+</html>
