@@ -29,6 +29,9 @@ public class CertiDevsScrollTest {
 
     @BeforeEach
     void setUp() {
+        // --headless
+        // --no-sandbox
+        // --disable-dev-shm-usage
         driver = new ChromeDriver();
         driver.get("https://certidevs.com/curso-selenium");
         driver.manage().window().maximize();
