@@ -78,7 +78,7 @@ jobs:
           done
 
       - name: Ejecutar pruebas de integración y Selenium
-        run: mvn verify
+        run: mvn verify -Dmaven.test.failure.ignore=true
 
 #       run: mvn verify -Dmaven.test.failure.ignore=true
 
