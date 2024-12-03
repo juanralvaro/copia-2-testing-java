@@ -81,8 +81,8 @@ jobs:
         run: mvn verify -Dmaven.test.failure.ignore=true
 
 #  11c10b63f3d887d3727dd0c30f137d7015ecdc2f
-      - name: SonarCloud Scan
-        env:
-          GITHUB TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+#      - name: SonarCloud Scan
+#        env:
+#          GITHUB TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
