@@ -69,6 +69,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Wait for Selenium to be ready
+        run: |
+          for i in {1..30}; do
+            curl -s http://localhost:4444/wd/hub/status && break
+            echo "Esperando que Selenium esté listo..."
+            sleep 1
+          done
+
       - name: Ejecutar pruebas de integración y Selenium
         run: mvn verify
 
