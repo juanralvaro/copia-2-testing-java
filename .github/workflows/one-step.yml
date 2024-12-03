@@ -50,4 +50,4 @@ jobs:
       - name: Sonar Analysis
         env:
           SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=juanralvaro_spring-github-actions -Dsonar.organization=juanralvaro -Dsonar.host.url=https://sonarcloud.io
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=alansastre_spring-github-actions -Dsonar.organization=alansastre -Dsonar.host.url=https://sonarcloud.io
