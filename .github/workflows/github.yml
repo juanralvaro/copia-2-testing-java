@@ -80,11 +80,9 @@ jobs:
       - name: Ejecutar pruebas de integración y Selenium
         run: mvn verify -Dmaven.test.failure.ignore=true
 
-#       run: mvn verify -Dmaven.test.failure.ignore=true
-
-
-#     - name: SonarCloud Scan
-#       uses: sonarsource/sonarcloud-github-action@master
-#       env:
-#       GITHUB TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
+#  11c10b63f3d887d3727dd0c30f137d7015ecdc2f
+      - name: SonarCloud Scan
+        env:
+          GITHUB TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
