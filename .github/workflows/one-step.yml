@@ -50,5 +50,4 @@ jobs:
       - name: SonarCloud Scan
         env:
           SONAR TOKEN: ${{ secrets.SONAR_TOKEN }}
-            - name: SonarCloud Scan
         run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=juanralvaro_spring-github-actions -Dsonar.organization=juanralvaro
